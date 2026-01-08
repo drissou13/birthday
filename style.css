@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1b1b3a, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", sans-serif;
+    color: white;
+    padding: 20px;
+}
+
+.scene {
+    text-align: center;
+    perspective: 1200px;
+    width: 100%;
+    max-width: 420px;
+}
+
+h1 {
+    font-size: 1.2rem;
+}
+
+/* GÂTEAU 3D */
+.cake-3d {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 200px;
+    margin: 30px auto;
+    transform-style: preserve-3d;
+    transform: rotateX(22deg);
+}
+
+.top {
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    background: radial-gradient(circle at center, #ffe0b2, #d89b5a);
+    border-radius: 50%;
+    top: 0;
+    box-shadow: inset 0 10px 20px rgba(255,255,255,0.35);
+}
+
+.side {
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(#c2702f, #8b4513);
+    border-radius: 0 0 50% 50%;
+    top: 60px;
+    box-shadow: inset 0 -15px 30px rgba(0,0,0,0.6);
+}
+
+/* BOUGIES */
+.candles {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    pointer-events: none;
+}
+
+.candle {
+    position: absolute;
+    width: 8px;
+    background: linear-gradient(#fff, #ddd);
+    border-radius: 4px;
+    transform-origin: bottom center;
+}
+
+.flame {
+    position: absolute;
+    top: -14px;
+    left: -2px;
+    width: 12px;
+    height: 14px;
+    background: radial-gradient(circle, #fff9c4, #ff9800, #ff5722);
+    border-radius: 50%;
+    animation: flicker 0.12s infinite;
+    box-shadow: 0 0 15px orange;
+}
+
+@keyframes flicker {
+    0% { transform: scale(1) rotate(-2deg); }
+    50% { transform: scale(1.2) rotate(2deg); }
+    100% { transform: scale(1) rotate(-1deg); }
+}
+
+/* FUMÉE */
+.smoke {
+    position: absolute;
+    top: -18px;
+    left: -6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,200,200,0.6), rgba(200,200,200,0));
+    animation: smoke 2.5s ease-out forwards;
+}
+
+@keyframes smoke {
+    from {
+        opacity: 0.8;
+        transform: translateY(0) scale(0.6);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-40px) scale(1.5);
+    }
+}
+
+/* MESSAGE */
+.merci {
+    font-size: 1.1rem;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.merci.show {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    .cake-3d {
+        transform: rotateX(18deg) scale(0.95);
+    }
+}
